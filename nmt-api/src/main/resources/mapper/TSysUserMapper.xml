@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fh.user.mapper.TSysUserMapper">
+
+    <select id="queryPageUser" resultType="com.fh.user.entity.UserVo">
+          SELECT
+	u.id, u.userName, u.realName, u.phone, u.email, u.idCard, u.sex, u.birthday, u.imgUrl, e.eduName, p.name provinceName, c.name cityName, a.name areaName, u.deptId, d.deptName, u.createTime, u.updateTime
+    FROM
+	t_sys_user u
+    LEFT JOIN t_province p ON u.provinceCode = p.code_p
+    LEFT JOIN t_city c on u.cityCode = c.code_c
+    LEFT JOIN t_area a on u.areaCode = a.code_a
+    LEFT JOIN t_education e on u.eduId = e.id
+    LEFT JOIN t_sys_dept d on u.deptId = d.id
+    </select>
+
+</mapper>
